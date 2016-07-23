@@ -1,3 +1,35 @@
-<h2>torrent-search</h2>
-
-<p data-bind='text: message'></p>
+<div class="row">
+<!-- Search Bar -->
+	<div class="col-lg-6">
+	    <div class="input-group">
+	      <input type="text" class="form-control" placeholder="Search for..." data-bind="value:artistSearch">
+	      <span class="input-group-btn">
+	        <button class="btn btn-default" type="button" data-bind="click: searchArtist">Search Artists</button>
+	      </span>
+	    </div><!-- /input-group -->
+	</div><!-- /.col-lg-6 -->
+</div>
+<!-- Artist Name -->
+<div class="row">
+	<h1 data-bind="text:artistName"></h1>
+</div>
+<div class="row" data-bind="foreach: artistResults">
+	<!-- Album Name -->
+	<div class="row" >
+		<h2 data-bind="text:groupName"></h2>
+	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<img data-bind="attr: { src: image }" class="album-art" />
+		</div>
+		<div class="col-md-9">
+			<div class="row" data-bind="foreach: torrents">
+				<div class="col-md-4" data-bind="text: formatStr"></div>
+				<div class="col-md-4" data-bind="text: sizeMb">Size</div>
+				<div class="col-md-4">
+					<button class="btn btn-default" type="button">Download</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

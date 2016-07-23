@@ -1,3 +1,8 @@
 #page {
 	margin-top: 80px;
 }
+
+.album-art {
+	width: 100px;
+	height: 100px;
+}
