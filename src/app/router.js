@@ -34,7 +34,7 @@ class Router {
 var routerInstance = new Router({
     routes: [
         { url: '',          params: { page: 'torrent-search' } },
-        { url: 'about',     params: { page: 'about-page' } }
+        { url: 'torrent-status',     params: { page: 'torrent-status' } }
     ]
 });
 
