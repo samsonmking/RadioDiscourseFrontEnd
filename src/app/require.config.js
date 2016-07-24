@@ -9,7 +9,8 @@ var require = {
         "knockout":             "bower_modules/knockout/dist/knockout",
         "knockout-projections": "bower_modules/knockout-projections/dist/knockout-projections",
         "signals":              "bower_modules/js-signals/dist/signals.min",
-        "text":                 "bower_modules/requirejs-text/text"
+        "text":                 "bower_modules/requirejs-text/text",
+        "socketio":             "bower_modules/socket.io.client/dist/socket.io-1.3.5"
     },
     shim: {
         "bootstrap": { deps: ["jquery"] }

@@ -17,7 +17,7 @@ class Torrent {
 		this.sizeMb = ko.computed(() => {
 			var mb = this.size() / 1000000
 			return parseFloat(mb).toFixed(2);
-		})
+		});
 	}
 }
 
