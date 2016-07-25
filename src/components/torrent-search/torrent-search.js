@@ -1,4 +1,5 @@
 import ko from 'knockout';
+import 'notifyjs';
 import templateMarkup from 'text!./torrent-search.html';
 
 class Torrent {
@@ -43,10 +44,10 @@ class TorrentSearch {
     	var url = this.torrentBaseUri + '/' + torrent.id;
 	    	$.post(url)
 	    		.done((reply) => {
-	    			console.log(reply);
+	    			$.notify(reply.name + " added successfully", "success");
 	    		})
 	    		.fail((reply) => {
-	    			console.log(reply);
+	    			$.notify(reply.name + " failed", "error");
 	    		});
 	    }
 
