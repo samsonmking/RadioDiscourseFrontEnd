@@ -11,23 +11,29 @@
 </div>
 <!-- Artist Name -->
 <div class="row">
-	<h1 data-bind="text:artistName"></h1>
+	<div class="col-md-12">
+		<h1 data-bind="text:artistName"></h1>
+	</div>
 </div>
 <div class="row" data-bind="foreach: artistResults">
-	<!-- Album Name -->
-	<div class="row" >
-		<h2 data-bind="text:groupName"></h2>
-	</div>
-	<div class="row">
-		<div class="col-md-3">
-			<img data-bind="attr: { src: image }" class="album-art" />
+	<div class="col-md-12">
+		<!-- Album Name -->
+		<div class="row" >
+			<div class="col-md-12">
+				<h2 data-bind="text:groupName"></h2>
+			</div>
 		</div>
-		<div class="col-md-9">
-			<div class="row" data-bind="foreach: torrents">
-				<div class="col-md-4" data-bind="text: formatStr"></div>
-				<div class="col-md-4" data-bind="text: sizeMb">Size</div>
-				<div class="col-md-4">
-					<button class="btn btn-default" type="button">Download</button>
+		<div class="row">
+			<div class="col-md-3">
+				<img data-bind="attr: { src: image }" class="album-art" onerror="if (this.src != 'images/default_album.svg') this.src='images/default_album.svg';"/>
+			</div>
+			<div class="col-md-9">
+				<div class="row" data-bind="foreach: torrents">
+					<div class="col-md-4" data-bind="text: formatStr"></div>
+					<div class="col-md-4" data-bind="text: sizeMb">Size</div>
+					<div class="col-md-4">
+						<button class="btn btn-default" type="button" data-bind="click: $component.downloadTorrent">Download</button>
+					</div>
 				</div>
 			</div>
 		</div>
