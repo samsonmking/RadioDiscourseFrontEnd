@@ -20,18 +20,19 @@
 		<!-- Album Name -->
 		<div class="row" >
 			<div class="col-md-12">
-				<h2 data-bind="text:groupName"></h2>
+				<h2 data-bind="text:albumName"></h2>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-3">
-				<img data-bind="attr: { src: image }" class="album-art" onerror="if (this.src != 'images/default_album.svg') this.src='images/default_album.svg';"/>
+			<div class="col-md-3" >
+				<img data-bind="attr: { src: image }" class="album-art-placeholder" onerror="if (this.src != 'images/default_album.svg') this.src='images/default_album.svg';"/>
 			</div>
 			<div class="col-md-9">
 				<div class="row" data-bind="foreach: torrents">
 					<div class="col-md-4" data-bind="text: formatStr"></div>
-					<div class="col-md-4" data-bind="text: sizeMb">Size</div>
-					<div class="col-md-4">
+					<div class="col-md-2" data-bind="text: sizeMb"></div>
+					<div class="col-md-4" data-bind="text: moreFormat"></div>
+					<div class="col-md-2">
 						<button class="btn btn-default" type="button" data-bind="click: $component.downloadTorrent">Download</button>
 					</div>
 				</div>

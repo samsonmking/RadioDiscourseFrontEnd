@@ -1,5 +1,6 @@
 import ko from 'knockout';
 import 'notifyjs';
+import he from 'he';
 import templateMarkup from 'text!./torrent-search.html';
 
 class Torrent {
@@ -8,12 +9,19 @@ class Torrent {
 		this.format = ko.observable(data.format);
 		this.id = data.id;
 		this.media = ko.observable(data.media);
-		this.remastered = data.remastered;
-		this.remasterYear = data.remasterYear;
-		this.scene = data.scene;
+		this.remastered = ko.observable(data.remastered);
+		this.remasterYear = ko.observable(data.remasterYear);
+		this.remasterTitle = ko.observable(data.remasterTitle);
+		this.scene =ko.observable(data.scene);
 		this.size = ko.observable(data.size);
 		this.formatStr = ko.computed(() => {
 			return this.format() + ' / ' + this.encoding() + ' / ' + this.media(); 
+		});
+		this.moreFormat = ko.computed(() => {
+			if (this.scene()) return "Scene";
+			if (this.remastered()) {
+				return this.remasterTitle() + ' - ' + this.remasterYear();
+			}
 		});
 		this.sizeMb = ko.computed(() => {
 			var mb = this.size() / 1000000
@@ -24,11 +32,14 @@ class Torrent {
 
 class TorrentGroup {
 	constructor(data) {
-		this.groupName = data.groupName;
+		this.groupName = ko.observable(data.groupName);
 		this.groupYear = data.groupYear;
 		this.groupRecordLabel = data.groupRecordLabel;
 		this.torrents = ko.observableArray();
 		this.image = data.wikiImage;
+		this.albumName = ko.computed(() => {
+			return he.decode(this.groupName());
+		});
 	}
 }
 

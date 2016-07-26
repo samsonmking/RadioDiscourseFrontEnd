@@ -6,3 +6,9 @@
 	width: 100px;
 	height: 100px;
 }
+
+.album-art-placeholder {
+	background-image: linear-gradient(135deg,#8e8485,#846170);
+	width: 100px;
+	height: 100px;
+}
