@@ -1,6 +1,17 @@
-<div class="row" data-bind="foreach: torrents">
-	<div class="col-md-5" data-bind="text: name"></div>
-	<div class="col-md-3" data-bind="text: size"></div>
-	<div class="col-md-2" data-bind="text: dl"></div>
-	<div class="col-md-2" data-bind="text: ul"></div>
+<div class="row">
+		<div class="col-md-5  status-header">Name</div>
+		<div class="col-md-3  status-header">Size</div>
+		<div class="col-md-2  status-header">Download %</div>
+		<div class="col-md-2  status-header">Upload%</div>
 </div>
+<div class="row" data-bind="foreach: torrents">
+	<div class="col-md-12 status-row">
+		<div class="row torrent-text">
+			<div class="col-md-5" data-bind="text: name"></div>
+			<div class="col-md-3" data-bind="text: sizeMb"></div>
+			<div class="col-md-2" data-bind="text: dl"></div>
+			<div class="col-md-2" data-bind="text: ul"></div>
+		</div>
+	</div>
+</div>
+

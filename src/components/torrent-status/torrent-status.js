@@ -7,9 +7,13 @@ class TorrentOperation {
 		this.name = data.name,
 		this.id = data.id,
 		this.hash = data.hash,
-		this.size = data.size,
+		this.size = ko.observable(data.size),
 		this.dl = ko.observable(data.dl),
-		this.ul = ko.observable(data.ul)
+		this.ul = ko.observable(data.ul),
+        this.sizeMb = ko.computed(() => {
+            var mb = this.size() / 1000000
+            return parseFloat(mb).toFixed(2) + ' mb';
+        });
 	}
 }
 
@@ -23,6 +27,7 @@ class TorrentStatus {
         		return new TorrentOperation(torrent);
         	});
         	this.torrents(koTorrents);
+            console.log(this.torrents());
         });
         socket.on('torrentUpdate', (data) => {
         	var torrents = this.torrents();
