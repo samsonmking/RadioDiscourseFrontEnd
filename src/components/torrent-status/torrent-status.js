@@ -41,7 +41,7 @@ class TorrentStatus {
         		}
         	}
         	if (!updated) {
-        		this.torrents.push(new TorrentOperation(data));
+        		this.torrents.unshift(new TorrentOperation(data));
         	}
         });
     }

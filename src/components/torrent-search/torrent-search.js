@@ -50,9 +50,10 @@ class TorrentSearch {
     	this.artistSearch = ko.observable();
     	this.artistName = ko.observable();
     	this.artistResults = ko.observableArray();
+    	this.loading = ko.observable(false);
 
     	this.downloadTorrent = (torrent) => {
-    	var url = this.torrentBaseUri + '/' + torrent.id;
+    		var url = this.torrentBaseUri + '/' + torrent.id;
 	    	$.post(url)
 	    		.done((reply) => {
 	    			$.notify(reply.name + " added successfully", "success");
@@ -65,8 +66,10 @@ class TorrentSearch {
     	this.searchArtist = () => {
 	    	var noSpace = this.artistSearch().replace(' ', '+');
 	    	var url = this.whatBaseUri + '?artist_search=' + noSpace;
+	    	this.loading(true);
 	    	$.getJSON(url)
 	    		.done((reply) => {
+	    			this.loading(false);
 	    			this.artistName(reply.artist_search);
 	    			// Map Torrent Groups (Albums)
 	    			var koGroups = $.map(reply.results, (tg) => {
@@ -81,6 +84,7 @@ class TorrentSearch {
 	    			this.artistResults(koGroups);
 	    		})
 	    		.fail((reply) => {
+	    			this.loading(false);
 	    			console.log(reply);
 	    		});
     	}
