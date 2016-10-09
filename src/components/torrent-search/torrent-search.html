@@ -13,7 +13,7 @@
 			</div><!-- /.col-lg-6 -->
 		</div>
 		<!-- Artist Name -->
-		<div class="row">
+		<div class="row" data-bind="if: !loading()">
 			<div class="col-md-12">
 				<h1 data-bind="text:artistName"></h1>
 			</div>
@@ -23,7 +23,7 @@
 <div data-bind="if: loading">
 	<div class="loader">loading</div>
 </div>
-<div class="row" data-bind="foreach: artistResults">
+<div class="row" data-bind="foreach: artistResults, if: !loading()">
 	<div class="col-md-12">
 		<!-- Album Name -->
 		<div class="row album-header">
