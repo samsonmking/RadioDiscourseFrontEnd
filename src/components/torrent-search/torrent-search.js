@@ -36,11 +36,14 @@ class TorrentGroup {
 	constructor(data) {
 		this.groupName = ko.observable(data.groupName);
 		this.groupYear = data.groupYear;
-		this.groupRecordLabel = data.groupRecordLabel;
+		this.groupRecordLabel = ko.observable(data.groupRecordLabel);
 		this.torrents = ko.observableArray();
 		this.image = data.wikiImage;
 		this.albumName = ko.computed(() => {
 			return he.decode(this.groupName());
+		});
+		this.recordLabel = ko.computed(() => {
+			return he.decode(this.groupRecordLabel());
 		});
 	}
 }
