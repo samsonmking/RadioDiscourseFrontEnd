@@ -2,6 +2,8 @@ import ko from 'knockout';
 import 'notifyjs';
 import he from 'he';
 import templateMarkup from 'text!./torrent-search.html';
+import * as comm from '../communication';
+import hasher from 'hasher';
 
 class Torrent {
 	constructor(data) {
@@ -45,29 +47,31 @@ class TorrentGroup {
 
 class TorrentSearch {
     constructor(params) {
-    	this.whatBaseUri = 'http://192.168.56.2:5000/rd/api/whatcd';
-    	this.torrentBaseUri = 'http://192.168.56.2:5000/rd/api/torrent';
     	this.artistSearch = ko.observable();
     	this.artistName = ko.observable();
     	this.artistResults = ko.observableArray();
     	this.loading = ko.observable(false);
 
+    	comm.renewToken();
+
     	this.downloadTorrent = (torrent) => {
-    		var url = this.torrentBaseUri + '/' + torrent.id;
-	    	$.post(url)
+    		var url = '/torrent/' + torrent.id;
+	    	comm.postJSONAuth(url)
 	    		.done((reply) => {
 	    			$.notify(reply.name + " added successfully", "success");
 	    		})
 	    		.fail((reply) => {
-	    			$.notify(reply.name + " failed", "error");
+	    			if (reply.status === 401) hasher.setHash('login');
+	    			$.notify(reply.responseText, "error");
+	    			console.log(reply);
 	    		});
 	    }
 
     	this.searchArtist = () => {
 	    	var noSpace = this.artistSearch().replace(' ', '+');
-	    	var url = this.whatBaseUri + '?artist_search=' + noSpace;
+	    	var url = '/whatcd' + '?artist_search=' + noSpace;
 	    	this.loading(true);
-	    	$.getJSON(url)
+	    	comm.getJSONAuth(url)
 	    		.done((reply) => {
 	    			this.loading(false);
 	    			this.artistName(reply.artist_search);
@@ -85,7 +89,9 @@ class TorrentSearch {
 	    		})
 	    		.fail((reply) => {
 	    			this.loading(false);
+	    			$.notify(reply.responseText, "error");
 	    			console.log(reply);
+	    			if (reply.status === 401) hasher.setHash('login');
 	    		});
     	}
     }

@@ -1,6 +1,7 @@
 import ko from 'knockout';
 import templateMarkup from 'text!./torrent-status.html';
 import io from 'socketio';
+import * as comm from '../communication';
 
 class TorrentOperation {
 	constructor(data) {
@@ -21,13 +22,14 @@ class TorrentStatus {
     constructor(params) {
         this.torrents = ko.observableArray();
 
+        comm.renewToken();
+
         var socket = io.connect('http://192.168.56.2:5000/socket', {'forceNew': true});
         socket.on('torrentList', (data) => {
         	var koTorrents = $.map(data, (torrent) => {
         		return new TorrentOperation(torrent);
         	});
         	this.torrents(koTorrents);
-            console.log(this.torrents());
         });
         socket.on('torrentUpdate', (data) => {
         	var torrents = this.torrents();

@@ -30,11 +30,14 @@ class Router {
     }
 }
 
+var auth = { token: ''}
+
 // Create and export router instance
 var routerInstance = new Router({
     routes: [
-        { url: '',          params: { page: 'torrent-search' } },
-        { url: 'torrent-status',     params: { page: 'torrent-status' } }
+        { url: '', params: { page: 'torrent-search', 'auth': auth } },
+        { url: 'torrent-status', params: { page: 'torrent-status',  'auth': auth} },
+        { url: 'login', params: { page: 'login', 'auth': auth} }
     ]
 });
 
