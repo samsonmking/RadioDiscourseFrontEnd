@@ -57,46 +57,48 @@ class TorrentSearch {
 
     	comm.renewToken();
 
-    	this.downloadTorrent = (torrent) => {
-    		var url = '/torrent/' + torrent.id;
-	    	comm.postJSONAuth(url)
-	    		.done((reply) => {
-	    			$.notify(reply.name + " added successfully", "success");
-	    		})
-	    		.fail((reply) => {
-	    			if (reply.status === 401) hasher.setHash('login');
-	    			$.notify(reply.responseText, "error");
-	    			console.log(reply);
-	    		});
-	    }
+    	
+    }
 
-    	this.searchArtist = () => {
-	    	var noSpace = this.artistSearch().replace(' ', '+');
-	    	var url = '/whatcd' + '?artist_search=' + noSpace;
-	    	this.loading(true);
-	    	comm.getJSONAuth(url)
-	    		.done((reply) => {
-	    			this.loading(false);
-	    			this.artistName(reply.artist_search);
-	    			// Map Torrent Groups (Albums)
-	    			var koGroups = $.map(reply.results, (tg) => {
-	    				var koTg = new TorrentGroup(tg);
-	    				// Map Torrents per group
-	    				var koTorrents = $.map(tg.torrent, (tor) => {
-	    					return new Torrent(tor);
-	    				});
-	    				koTg.torrents(koTorrents);
-	    				return koTg;
-	    			});
-	    			this.artistResults(koGroups);
-	    		})
-	    		.fail((reply) => {
-	    			this.loading(false);
-	    			$.notify(reply.responseText, "error");
-	    			console.log(reply);
-	    			if (reply.status === 401) hasher.setHash('login');
-	    		});
-    	}
+    downloadTorrent(torrent) {
+		var url = '/torrent/' + torrent.id;
+    	comm.postJSONAuth(url)
+    		.done((reply) => {
+    			$.notify(reply.name + " added successfully", "success");
+    		})
+    		.fail((reply) => {
+    			if (reply.status === 401) hasher.setHash('login');
+    			$.notify(reply.responseText, "error");
+    			console.log(reply);
+    		});
+	}
+
+    searchArtist() {
+    	var noSpace = this.artistSearch().replace(' ', '+');
+    	var url = '/whatcd' + '?artist_search=' + noSpace;
+    	this.loading(true);
+    	comm.getJSONAuth(url)
+    		.done((reply) => {
+    			this.loading(false);
+    			this.artistName(reply.artist_search);
+    			// Map Torrent Groups (Albums)
+    			var koGroups = $.map(reply.results, (tg) => {
+    				var koTg = new TorrentGroup(tg);
+    				// Map Torrents per group
+    				var koTorrents = $.map(tg.torrent, (tor) => {
+    					return new Torrent(tor);
+    				});
+    				koTg.torrents(koTorrents);
+    				return koTg;
+    			});
+    			this.artistResults(koGroups);
+    		})
+    		.fail((reply) => {
+    			this.loading(false);
+    			$.notify(reply.responseText, "error");
+    			console.log(reply);
+    			if (reply.status === 401) hasher.setHash('login');
+    		});
     }
 
     dispose() {
