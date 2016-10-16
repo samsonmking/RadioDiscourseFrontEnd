@@ -56,8 +56,6 @@ class TorrentSearch {
     	this.loading = ko.observable(false);
 
     	comm.renewToken();
-
-    	
     }
 
     downloadTorrent(torrent) {
