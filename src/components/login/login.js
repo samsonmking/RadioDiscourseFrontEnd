@@ -1,7 +1,7 @@
 import ko from 'knockout';
 import templateMarkup from 'text!./login.html';
 import hasher from 'hasher';
-import * as comm from '../communication';
+import * as comm from 'comm';
 import 'notifyjs';
 
 class Login {

@@ -2,7 +2,7 @@ import ko from 'knockout';
 import 'notifyjs';
 import he from 'he';
 import templateMarkup from 'text!./torrent-search.html';
-import * as comm from '../communication';
+import * as comm from 'comm';
 import hasher from 'hasher';
 
 class Torrent {
