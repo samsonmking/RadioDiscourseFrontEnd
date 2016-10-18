@@ -99,6 +99,11 @@ gulp.task('html', function() {
         .pipe(gulp.dest('./dist/'));
 });
 
+gulp.task('images', function() {
+	gulp.src('./src/images/**/*')
+		.pipe(gulp.dest('./dist/images'))
+});
+
 // Removes all files from ./dist/
 gulp.task('clean', function() {
     return gulp.src('./dist/**/*', { read: false })
@@ -143,7 +148,7 @@ function babelTranspile(pathname, callback) {
     babelCore.transformFile(src, opts, callback);
 }
 
-gulp.task('default', ['html', 'js', 'css'], function(callback) {
+gulp.task('default', ['html', 'js', 'css', 'images'], function(callback) {
     callback();
     console.log('\nPlaced optimized files in ' + chalk.red('dist/\n'));
 });
