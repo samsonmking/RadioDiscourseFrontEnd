@@ -1,17 +1,31 @@
 {
   "name": "radiodiscourse",
-  "version": "0.0.0",
-  "private": true,
+  "description": "",
+  "main": "",
+  "authors": [
+    "midnightspecial-io <samson@samsonmking.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/samsonmking/RadioDiscourseFrontEnd",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/bower_modules",
+    "test",
+    "tests"
+  ],
   "dependencies": {
-    "components-bootstrap": "~3.1.1",
+    "he": "^1.1.0",
     "crossroads": "~0.12.0",
+    "components-bootstrap": "~3.1.1",
+    "js-signals": ">0.7 <2.0",
     "hasher": "~1.2.0",
-    "requirejs": "~2.1.11",
-    "requirejs-text": "~2.0.10",
     "knockout": "~3.3.0-alpha",
-    "knockout-projections": "~1.1.0"
-  },
-  "resolutions": {
-    "knockout": "~3.3.0-alpha"
+    "knockout-projections": "~1.1.0",
+    "requirejs": "~2.1.11",
+    "socket.io-client": "^1.5.0",
+    "notifyjs": "^0.4.2",
+    "requirejs-text": "~2.0.10"
   }
 }
