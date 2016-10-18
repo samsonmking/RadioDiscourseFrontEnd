@@ -10,12 +10,14 @@ var require = {
         "knockout-projections": "bower_modules/knockout-projections/dist/knockout-projections",
         "signals":              "bower_modules/js-signals/dist/signals.min",
         "text":                 "bower_modules/requirejs-text/text",
-        "socketio":             "bower_modules/socket.io.client/dist/socket.io-1.3.5",
+        "socketio":             "bower_modules/socket.io-client/socket.io",
         "notifyjs":             "bower_modules/notifyjs/dist/notify",
-        "he":                   "bower_modules/he/he"
+        "he":                   "bower_modules/he/he",
+        "comm":                 "components/communication"
     },
     shim: {
         "bootstrap": { deps: ["jquery"] },
-        "notifyjs": { deps: ["jquery"] }
+        "notifyjs": { deps: ["jquery"] },
+        "comm": { deps: ["jquery"]}
     }
 };
