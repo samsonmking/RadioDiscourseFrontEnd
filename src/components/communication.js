@@ -1,6 +1,7 @@
 import hasher from 'hasher';
 
-var baseUrl = 'http://192.168.56.2:5000/rd/api';
+var baseUrl = 'http://radiodiscourse.duckdns.org:5000/rd/api';
+var socketUrl = 'http://radiodiscourse.duckdns.org:5000/socket'
 
 function postJSONAuth (url, data) {
 	return $.ajax({
@@ -56,4 +57,4 @@ function renewToken() {
     });
 }
 
-export { postJSONAuth, postJSON, getJSONAuth, getToken, setToken, renewToken};
+export { postJSONAuth, postJSON, getJSONAuth, getToken, setToken, renewToken, socketUrl};

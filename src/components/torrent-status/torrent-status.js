@@ -35,7 +35,7 @@ class TorrentStatus {
                 console.log(error);
             })
 
-        var socket = io.connect('http://192.168.56.2:5000/socket', {'forceNew': true});
+        var socket = io.connect(comm.socketUrl, {'forceNew': true});
         socket.on('torrentUpdate', (data) => {
         	var torrents = this.torrents();
         	var updated = false;
